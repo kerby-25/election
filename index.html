@@ -1,88 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0d1b2a">
-  <meta name="description" content="Interface web du Système de Gestion Électorale – Université d'État d'Haïti.">
-  <title>Élection UEH — Système de gestion électorale</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0038A8">
+  <meta name="description" content="Interface web du système de gestion électorale de l'UEH.">
+  <title>Élection UEH — Gestion électorale</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </div>
-        <div>
-          <strong>ÉLECTION UEH</strong>
-          <small>Gestion électorale</small>
-        </div>
-      </div>
-
-      <div class="sidebar-section">
-        <span class="eyebrow">Navigation</span>
-        <nav class="nav-list" aria-label="Navigation principale">
-          <button class="nav-item is-active" data-view="dashboard"><span class="icon icon-grid"></span>Tableau de bord</button>
-          <button class="nav-item" data-view="bvs"><span class="icon icon-building"></span>Bureaux de vote</button>
-          <button class="nav-item" data-view="electeurs"><span class="icon icon-users"></span>Électeurs</button>
-          <button class="nav-item" data-view="candidats"><span class="icon icon-candidate"></span>Candidats</button>
-          <button class="nav-item" data-view="votes"><span class="icon icon-vote"></span>Votes</button>
-          <button class="nav-item" data-view="partis"><span class="icon icon-flag"></span>Partis politiques</button>
-          <button class="nav-item" data-view="rapports"><span class="icon icon-chart"></span>Rapports & résultats</button>
-        </nav>
-      </div>
-
-      <div class="sidebar-bottom">
-        <div class="system-card">
-          <div class="system-dot"></div>
-          <div>
-            <strong>Système local</strong>
-            <span>Données enregistrées dans ce navigateur</span>
-          </div>
-        </div>
-        <button class="nav-item subtle" id="demoBtn"><span class="icon icon-spark"></span>Charger la démo</button>
-      </div>
-    </aside>
-
-    <main class="main-content">
-      <header class="topbar">
-        <div class="topbar-left">
-          <button class="icon-button mobile-only" id="menuToggle" aria-label="Ouvrir le menu"><span class="icon icon-menu"></span></button>
-          <div>
-            <div class="breadcrumb">Système électoral <span>/</span> <strong id="viewLabel">Tableau de bord</strong></div>
-            <div class="topbar-title" id="pageTitle">Vue d’ensemble</div>
-          </div>
-        </div>
-        <div class="topbar-actions">
-          <button class="icon-button" id="globalSearchBtn" aria-label="Rechercher"><span class="icon icon-search"></span></button>
-          <button class="icon-button" id="themeToggle" aria-label="Changer le thème"><span class="icon icon-moon"></span></button>
-          <button class="avatar" title="Administrateur">AD</button>
-        </div>
-      </header>
-
-      <section class="content" id="app"></section>
-    </main>
-  </div>
-
-  <div class="modal-backdrop" id="modalBackdrop" hidden>
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-head">
-        <div>
-          <span class="eyebrow" id="modalEyebrow">Action</span>
-          <h2 id="modalTitle">Nouvel enregistrement</h2>
-        </div>
-        <button class="icon-button" data-close-modal onclick="closeModal()" aria-label="Fermer"><span class="icon icon-close"></span></button>
-      </div>
-      <div id="modalBody"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="flag-mark" aria-hidden="true"><i></i><i></i></div>
+      <div><b>ÉLECTION UEH</b><small>Gestion électorale</small></div>
     </div>
-  </div>
+    <div class="side-label">Navigation</div>
+    <nav>
+      <button class="nav-item active" data-view="dashboard"><span class="ic">⌂</span>Tableau de bord</button>
+      <button class="nav-item" data-view="bvs"><span class="ic">▦</span>Bureaux de vote</button>
+      <button class="nav-item" data-view="electeurs"><span class="ic">◉</span>Électeurs</button>
+      <button class="nav-item" data-view="candidats"><span class="ic">☆</span>Candidats</button>
+      <button class="nav-item" data-view="votes"><span class="ic">✓</span>Votes</button>
+      <button class="nav-item" data-view="partis"><span class="ic">⚑</span>Partis politiques</button>
+      <button class="nav-item" data-view="rapports"><span class="ic">▥</span>Rapports & résultats</button>
+    </nav>
+    <div class="side-bottom">
+      <div class="status"><span class="online"></span><div><b>Système local</b><small>Données du navigateur</small></div></div>
+      <button class="nav-item muted" id="clearLocal"><span class="ic">↺</span>Réinitialiser les données</button>
+    </div>
+  </aside>
 
-  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <main class="main">
+    <header class="topbar">
+      <div class="leftbar"><button class="mobile-menu" id="menuBtn">☰</button><div><small class="crumb">Système électoral / <span id="crumb">Tableau de bord</span></small><h1 id="title">Vue d’ensemble</h1></div></div>
+      <div class="actions"><button class="round" id="searchBtn" title="Recherche">⌕</button><button class="round" id="themeBtn" title="Mode sombre">◐</button><span class="avatar">UE</span></div>
+    </header>
+    <section class="content" id="app"></section>
+  </main>
+</div>
 
-  <input type="file" id="importInput" accept="application/json,.json" hidden>
-  <script src="app.js"></script>
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <section class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head"><div><small id="modalKicker">Action</small><h2 id="modalTitle">Enregistrement</h2></div><button class="round" data-close-modal>×</button></div>
+    <div id="modalBody"></div>
+  </section>
+</div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script src="app.js"></script>
 </body>
 </html>
